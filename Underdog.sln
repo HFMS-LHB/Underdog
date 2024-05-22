@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Core", "src\Underdog.Core\Underdog.Core.csproj", "{0FE4330D-6959-4600-8EFF-0C5E7BB1EB0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Wpf", "src\Underdog.Wpf\Underdog.Wpf.csproj", "{9698CE81-0798-4177-B790-23C9F9F9CC4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FE4330D-6959-4600-8EFF-0C5E7BB1EB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE4330D-6959-4600-8EFF-0C5E7BB1EB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE4330D-6959-4600-8EFF-0C5E7BB1EB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE4330D-6959-4600-8EFF-0C5E7BB1EB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {476758FB-5076-45FC-9F26-3A6F8F42AEA7}
+	EndGlobalSection
+EndGlobal
