@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Core", "src\Underd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Wpf", "src\Underdog.Wpf\Underdog.Wpf.csproj", "{9698CE81-0798-4177-B790-23C9F9F9CC4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Underdog.Wpf.Tests", "tests\Underdog.Wpf.Tests\Underdog.Wpf.Tests.csproj", "{0B25DA58-2462-4F7D-9C74-7AED833132DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9698CE81-0798-4177-B790-23C9F9F9CC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

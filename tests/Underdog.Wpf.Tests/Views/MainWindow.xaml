@@ -1,0 +1,26 @@
+﻿<Window
+    x:Class="Underdog.Wpf.Tests.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Underdog.Wpf.Tests.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Underdog.Wpf.Tests.ViewModels"
+    xmlns:vmLocator="clr-namespace:Underdog.Wpf.Mvvm;assembly=Underdog.wpf"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+    vmLocator:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                Height="100"
+                HorizontalAlignment="Center"
+                Text="{Binding Title}" />
+            <Button Command="{Binding ShowDialog1Command}" Content="点击弹窗1" />
+            <Button Command="{Binding ShowDialog2Command}" Content="点击弹窗2" />
+        </StackPanel>
+    </Grid>
+</Window>
