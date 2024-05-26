@@ -220,7 +220,7 @@ namespace Underdog.Wpf.Navigation.Regions
         /// <returns>The <see cref="IRegionManager"/> that is set on the view if it is a <see cref="DependencyObject"/>. It will be the current region manager when using this overload.</returns>
         public IRegionManager Add(string viewName)
         {
-            var view = ContainerLocator.Container.GetService<object>(viewName);
+            var view = ContainerLocator.Container.GetService(viewName);
             return Add(view, viewName, false);
         }
 

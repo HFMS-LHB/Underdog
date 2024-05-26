@@ -8,8 +8,10 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 using Underdog.Core.Dialogs;
 using Underdog.Core.Extensions;
@@ -49,18 +51,13 @@ namespace Underdog.Wpf.Tests
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices(ModularityExtension.AddModularity)
-                .ConfigureServices(ConfigurationClientService)
-                .ConfigureContainer<ContainerBuilder>(builder =>
-                {
-                    //builder.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
+                .ConfigureServices(ConfigurationClientService);
 
-                    //builder.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();
-                });
 
 
             AppHost = builder.Build();
             // 加载App.xaml资源
-            var app = AppHost.Services.GetRequiredService<App>();
+            // var app = AppHost.Services.GetRequiredService<App>();
             // app.InitializeComponent();
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
@@ -77,14 +74,18 @@ namespace Underdog.Wpf.Tests
         private static void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
         {
             config.Sources.Clear();
-            config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
+            config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             if (hostingContext.HostingEnvironment.IsDevelopment())
             {
-                config.AddJsonFile($"appsettings.{Environments.Development}.json", optional: true, reloadOnChange: false);
+                config.AddJsonFile($"appsettings.{Environments.Development}.json", optional: true, reloadOnChange: true);
             }
 
             config.AddEnvironmentVariables();
+
+            // 这里使用config.AddJsonFile()方法加载配置文件，在构造函数注入IConfiguration时仍然获取不到appsettings.json的配置信息
+            // 没找到原因，暂时通过静态类的方式保存configurationRoot对象
+            // var configurationRoot = config.Build();
         }
 
 
@@ -102,9 +103,8 @@ namespace Underdog.Wpf.Tests
             services.AddScoped<MainWindowViewModel>();
             services.AddHostedService<WPFHostedService<App, MainWindow>>();
             services.AddViewAndViewModel();
-            services.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
-            services.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();
             services.AddRegion();
+            services.AddRegionViewScanner();
             services.AddDialog();
             services.AddMvvm();
         }

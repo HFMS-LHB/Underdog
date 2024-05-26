@@ -8,11 +8,11 @@
     <Title>Underdog.Wpf框架</Title>
     <Authors>Underdog</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	  <Version>1.0.1</Version>
-	  <Description></Description>
+	  <Version>1.0.2</Version>
+	  <Description>a wpf framework based on net core</Description>
 	  <Copyright></Copyright>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageReleaseNotes>Porting Prism's IDialogService</PackageReleaseNotes>
+	  <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

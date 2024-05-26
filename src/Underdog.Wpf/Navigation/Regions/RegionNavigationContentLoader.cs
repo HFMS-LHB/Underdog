@@ -101,7 +101,7 @@ namespace Underdog.Wpf.Navigation.Regions
         {
             try
             {
-                var newRegionItem = _container.GetService<object>(candidateTargetContract);
+                var newRegionItem = _container.GetService(candidateTargetContract);
                 MvvmHelpers.AutowireViewModel(newRegionItem);
                 return newRegionItem;
             }

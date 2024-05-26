@@ -83,7 +83,7 @@ namespace Underdog.Wpf.Navigation.Regions
         /// <param name="targetName">The type of the view to register with the </param>
         /// <returns>The <see cref="IRegionManager"/>, for adding several views easily</returns>
         public void RegisterViewWithRegion(string regionName, string targetName) =>
-            RegisterViewWithRegion(regionName, c => c.GetService<object>(targetName));
+            RegisterViewWithRegion(regionName, c => c.GetService(targetName));
 
         /// <summary>
         /// Creates an instance of a registered view <see cref="Type"/>.

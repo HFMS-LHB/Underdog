@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using Underdog.Core.Navigation.Regions;
+
 namespace Underdog.Core.Ioc
 {
     public static class ContainerExtension
@@ -18,12 +20,13 @@ namespace Underdog.Core.Ioc
         }
         public static Type GetRegistrationType(this IServiceProvider serviceProvider, string name)
         {
-            var type= Type.GetType(name);
+            var type = Type.GetType(name);
             return serviceProvider.GetService(type).GetType();
         }
-        public static Type? GetService<T>(this IServiceProvider serviceProvider, string name)
+        public static object? GetService(this IServiceProvider serviceProvider, string name)
         {
-            return serviceProvider.GetServices(typeof(T)).FirstOrDefault(p => p.GetType().Name == name)?.GetType();
+            var type = Type.GetType(name);
+            return serviceProvider.GetService(type);
         }
     }
 }

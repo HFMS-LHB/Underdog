@@ -394,7 +394,7 @@ namespace Underdog.Wpf.Navigation.Regions
         {
             try
             {
-                var view = ContainerLocator.Container.GetService<object>(candidateTargetContract);
+                var view = ContainerLocator.Container.GetService(candidateTargetContract);
 
                 MvvmHelpers.AutowireViewModel(view);
 

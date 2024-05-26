@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using Microsoft.Extensions.Configuration;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +11,24 @@ using System.Threading.Tasks;
 
 using Underdog.Core.Dialogs;
 using Underdog.Core.Mvvm;
-using Underdog.Wpf.Dialogs;
+using Underdog.Core.Navigation.Regions;
+using Underdog.Wpf.Navigation.Regions;
+using Underdog.Wpf.Tests.Common;
 
 namespace Underdog.Wpf.Tests.ViewModels
 {
     public partial class MainWindowViewModel:ViewModelBase
     {
-        private IDialogService _dialogService;
-        public MainWindowViewModel(IDialogService dialogService)
+        private readonly IDialogService _dialogService;
+        private readonly IRegionManager _regionManager;
+        private readonly IRegionViewScanner _regionViewScanner;
+        private readonly IConfiguration _configuration;
+        public MainWindowViewModel(IConfiguration configuration, IRegionViewScanner regionViewScanner, IDialogService dialogService,IRegionManager regionManager)
         {
+            _configuration = configuration;
             _dialogService = dialogService;
+            _regionManager = regionManager;
+            _regionViewScanner = regionViewScanner;
 
             ShowDialog1Command = new RelayCommand(() =>
             {
@@ -53,12 +63,25 @@ namespace Underdog.Wpf.Tests.ViewModels
                         Title = "I Don't know what you did!?";
                 });
             });
+
+            ShowRegion1Command = new(() =>
+            {
+                _regionManager.RequestNavigate(RegionKey.Root, _regionViewScanner.GetViewAssemblyQualifiedName<ViewAViewModel>());
+            });
+
+            ShowRegion2Command = new(() =>
+            {
+                _regionManager.RequestNavigate(RegionKey.Root, _regionViewScanner.GetViewAssemblyQualifiedName<ViewBViewModel>());
+            });
         }
 
         public RelayCommand ShowDialog1Command { get; }
         public RelayCommand ShowDialog2Command { get; }
 
+        public RelayCommand ShowRegion1Command { get; }
+        public RelayCommand ShowRegion2Command { get; }
+
         [ObservableProperty]
-        private string title;
+        private string title = "Welcome to Underdog WPF Tests";
     }
 }
