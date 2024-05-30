@@ -35,12 +35,14 @@ namespace Underdog.Wpf.Dialogs
         /// <param name="name">The name of the dialog to show.</param>
         /// <param name="parameters">The parameters to pass to the dialog.</param>
         /// <param name="callback">The action to perform when the dialog is closed.</param>
-        public void ShowDialog(string name, IDialogParameters parameters, DialogCallback callback)
+        public void ShowDialog(string name, IDialogParameters parameters, DialogCallback callback, string? windowName = null)
         {
             parameters ??= new DialogParameters();
             var isModal = parameters.TryGetValue<bool>(KnownDialogParameters.ShowNonModal, out var show) ? !show : true;
-            var windowName = parameters.TryGetValue<string>(KnownDialogParameters.WindowName, out var wName) ? wName : null;
-
+            if (string.IsNullOrEmpty(windowName))
+            {
+                windowName = parameters.TryGetValue<string>(KnownDialogParameters.WindowName, out var wName) ? wName : null;
+            }
             IDialogWindow dialogWindow = CreateDialogWindow(windowName);
             ConfigureDialogWindowEvents(dialogWindow, callback);
             ConfigureDialogWindowContent(name, dialogWindow, parameters);

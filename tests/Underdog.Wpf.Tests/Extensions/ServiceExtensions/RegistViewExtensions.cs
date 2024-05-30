@@ -57,9 +57,6 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
                 viewScanner.ConfigureAssemblies<FrameworkElement>(assemblies);
                 return viewScanner;
             }));
-
-
-
         }
 
         /// <summary>
@@ -72,6 +69,8 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
             services.AddTransient<ViewB>();
             services.AddTransient<ViewAViewModel>();
             services.AddTransient<ViewBViewModel>();
+
+            services.RegisterDialogWindow<MessageBoxC>(nameof(MessageBoxC));
 
             services.AddTransient<NotificationDialog1>();
             services.AddTransient<NotificationDialog2>();

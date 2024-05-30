@@ -44,14 +44,14 @@ namespace Underdog.Wpf.Tests.ViewModels
                         Title = "Result is Cancel";
                     else
                         Title = "I Don't know what you did!?";
-                });
+                }, "MessageBoxC");
             });
 
             ShowDialog2Command = new RelayCommand(() =>
             {
                 var message = "This is a message that should be shown in the dialog.";
                 //using the dialog service as-is
-                _dialogService.ShowDialog("NotificationDialog2", new DialogParameters($"message={message}"), r =>
+                _dialogService.ShowDialog("NotificationDialog2", new DialogParameters($"windowName=MessageBoxC&message={message}"), r =>
                 {
                     if (r.Result == ButtonResult.None)
                         Title = "Result is None";

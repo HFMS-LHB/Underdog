@@ -11,6 +11,7 @@ public interface IDialogService
     /// <param name="name">The unique name of the dialog to display. Must match an entry in the <see cref="Underdog.Core.Ioc.IContainerRegistry"/>.</param>
     /// <param name="parameters">Parameters that the dialog can use for custom functionality.</param>
     /// <param name="callback">The action to be invoked upon successful or failed completion of displaying the dialog.</param>
+    /// <param name="windowName">The name of the window to display the dialog in. If null, the dialog will be displayed in the default window.</param>
     /// <example>
     /// This example shows how to display a dialog with two parameters.
     /// <code>
@@ -22,5 +23,5 @@ public interface IDialogService
     /// _dialogService.ShowDialog("DemoDialog", parameters, <paramref name="callback"/>: null);
     /// </code>
     /// </example>
-    void ShowDialog(string name, IDialogParameters parameters, DialogCallback callback);
+    void ShowDialog(string name, IDialogParameters parameters, DialogCallback callback, string? windowName = null);
 }
