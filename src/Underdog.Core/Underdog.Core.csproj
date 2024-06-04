@@ -7,11 +7,11 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>wpf框架</Title>
 		<Authors>Underdog</Authors>
-		<VersionPrefix>1.0.2</VersionPrefix>
+		<VersionPrefix>1.0.3</VersionPrefix>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageReleaseNotes>更改ShowDialog方法签名，使其更方便的指定windowName</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
