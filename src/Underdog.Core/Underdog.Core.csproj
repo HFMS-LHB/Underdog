@@ -4,14 +4,19 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>wpf框架</Title>
+		<Title>Underdog.Core</Title>
 		<Authors>Underdog</Authors>
 		<VersionPrefix>1.0.3</VersionPrefix>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>更改ShowDialog方法签名，使其更方便的指定windowName</PackageReleaseNotes>
+		<PackageTags>mvvm</PackageTags>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
