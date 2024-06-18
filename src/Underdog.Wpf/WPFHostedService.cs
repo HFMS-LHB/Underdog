@@ -3,6 +3,7 @@ using System.Windows;
 
 namespace Underdog.Wpf
 {
+    [Obsolete("没什么意义，而且如果使用IHostedService管理QuartNet，会和主程序产生线程冲突")]
     public class WPFHostedService<TApplication, TWindow> : IHostedService
         where TApplication : Application
         where TWindow : Window

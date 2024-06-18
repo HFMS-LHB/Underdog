@@ -57,13 +57,19 @@ namespace Underdog.Wpf.Tests
 
             AppHost = builder.Build();
             // 加载App.xaml资源
-            // var app = AppHost.Services.GetRequiredService<App>();
-            // app.InitializeComponent();
+            var app = AppHost.Services.GetRequiredService<App>();
+            app.InitializeComponent();
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
             AppHost.UseModularity();
 
-            AppHost.Run();
+            Task.Run(async () =>
+            {
+                await AppHost.RunAsync();
+            });
+
+            var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+            mainWindow!.ShowDialog();
         }
 
         /// <summary>
@@ -101,12 +107,12 @@ namespace Underdog.Wpf.Tests
             services.AddSingleton<App>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
-            services.AddHostedService<WPFHostedService<App, MainWindow>>();
             services.AddViewAndViewModel();
             services.AddRegion();
             services.AddRegionViewScanner();
             services.AddDialog();
             services.AddMvvm();
+            // services.AddHostedService<MainHostedService>(); // 这个放到最后注册
         }
     }
 }
