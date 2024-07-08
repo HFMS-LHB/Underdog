@@ -7,11 +7,11 @@
 		<Nullable>enable</Nullable>
 		<Title>Underdog.Wpf</Title>
 		<Authors>Underdog</Authors>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>更改ShowDialog方法签名，使其更方便的指定windowName</PackageReleaseNotes>
+		<PackageReleaseNotes>添加视图扫描器、添加view和viewmodel批量注册</PackageReleaseNotes>
 		<PackageTags>mvvm</PackageTags>
 	</PropertyGroup>
 

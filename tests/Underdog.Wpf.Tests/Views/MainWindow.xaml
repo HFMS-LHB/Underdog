@@ -24,7 +24,7 @@
                 Width="120"
                 HorizontalAlignment="Center"
                 Text="{Binding Title}" />
-            <Button Style="{StaticResource defaultButton}" Command="{Binding ShowDialog1Command}" Content="点击弹窗1" />
+            <Button Command="{Binding ShowDialog1Command}" Content="点击弹窗1" />
             <Button Command="{Binding ShowDialog2Command}" Content="点击弹窗2" />
             <Button Command="{Binding ShowRegion1Command}" Content="界面导航1" />
             <Button Command="{Binding ShowRegion2Command}" Content="界面导航2" />

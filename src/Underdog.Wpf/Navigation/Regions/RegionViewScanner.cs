@@ -14,16 +14,19 @@ namespace Underdog.Wpf.Navigation.Regions
 
         public IReadOnlyDictionary<string, string> ViewDictionary => _viewDictionary;
 
-        public void ConfigureAssemblies(List<Assembly> assemblies)
+        public void ConfigureAssemblies<TInterface>(Assembly assembly)
         {
-            _viewDictionary.Clear();
-            ScanAssembliesForInterface<FrameworkElement>(assemblies);
+            ConfigureAssemblies<TInterface>([assembly]);
         }
 
         public void ConfigureAssemblies<TInterface>(List<Assembly> assemblies)
         {
-            _viewDictionary.Clear();
             ScanAssembliesForInterface<TInterface>(assemblies);
+        }
+
+        public void Clear() 
+        {
+            _viewDictionary.Clear();
         }
 
         private void ScanAssembliesForInterface<TInterface>(List<Assembly> assemblies)

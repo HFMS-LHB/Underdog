@@ -18,8 +18,10 @@ using Underdog.Core.Extensions;
 using Underdog.Core.Mvvm;
 using Underdog.Wpf.Dialogs;
 using Underdog.Wpf.Ioc;
-using Underdog.Wpf.Mvvm;
+using Underdog.Wpf.Extensions;
 using Underdog.Wpf.Navigation.Regions;
+using Underdog.Wpf.Mvvm;
+using Underdog.Wpf.Tests.Extensions;
 using Underdog.Wpf.Tests.Extensions.ServiceExtensions;
 using Underdog.Wpf.Tests.ViewModels;
 using Underdog.Wpf.Tests.Views;
@@ -59,13 +61,22 @@ namespace Underdog.Wpf.Tests
             // 加载App.xaml资源
             var app = AppHost.Services.GetRequiredService<App>();
             app.InitializeComponent();
+
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
             AppHost.UseModularity();
 
             Task.Run(async () =>
             {
-                await AppHost.RunAsync();
+                try
+                {
+                    await AppHost.RunAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred during IOC container registration: {ex.Message}");
+                    Environment.Exit(1);
+                }
             });
 
             var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
@@ -104,15 +115,20 @@ namespace Underdog.Wpf.Tests
         /// <param name="services"></param>
         private static void ConfigurationClientService(HostBuilderContext context, IServiceCollection services)
         {
+            // 当前程序集
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+
             services.AddSingleton<App>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
-            services.AddViewAndViewModel();
             services.AddRegion();
-            services.AddRegionViewScanner();
+            services.AddRegionViewScanner(currentAssembly);
             services.AddDialog();
             services.AddMvvm();
-            // services.AddHostedService<MainHostedService>(); // 这个放到最后注册
+            services.AddViewsAndViewModels(currentAssembly);
+            services.AddViewAndViewModel();
+            services.AddDialogVMMapping();
+            services.AddHostedService<MainHostedService>(); // 这个放到最后注册
         }
     }
 }

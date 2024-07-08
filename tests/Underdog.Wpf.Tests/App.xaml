@@ -2,10 +2,5 @@
     x:Class="Underdog.Wpf.Tests.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Underdog.Wpf.Tests" StartupUri="">
-    <Application.Resources>
-        <ResourceDictionary>
-            <Style x:Key="defaultButton" TargetType="Button"/>
-        </ResourceDictionary>
-    </Application.Resources>
+    xmlns:local="clr-namespace:Underdog.Wpf.Tests" >
 </Application>

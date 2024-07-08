@@ -10,26 +10,23 @@ namespace Underdog.Wpf.Tests.Extensions
 {
     public class MainHostedService : IHostedService
     {
-        private readonly IHostApplicationLifetime _hostApplicationLifetime;
         public MainHostedService(IHostApplicationLifetime hostApplicationLifetime)
         {
-            _hostApplicationLifetime = hostApplicationLifetime;
+            // 注册一些启动时要做的操作
+            hostApplicationLifetime.ApplicationStarted.Register(() =>
+            {
+
+            });
+
+            // 注册一些停止时要做的操作
+            hostApplicationLifetime.ApplicationStopped.Register(() =>
+            {
+
+            });
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            // 注册一些启动时要做的操作
-            _hostApplicationLifetime.ApplicationStarted.Register(() => 
-            {
-            
-            });
-
-            // 注册一些停止时要做的操作
-            _hostApplicationLifetime.ApplicationStopped.Register(() =>
-            {
-
-            });
-
             return Task.CompletedTask;
         }
 
