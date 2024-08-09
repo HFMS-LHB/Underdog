@@ -122,9 +122,9 @@ namespace Underdog.Wpf.Tests
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
             services.AddRegion();
-            services.AddRegionViewScanner(currentAssembly);
             services.AddDialog();
             services.AddMvvm();
+            services.AddRegionViewScanner(currentAssembly);
             services.AddViewsAndViewModels(currentAssembly);
             services.AddViewAndViewModel();
             services.AddDialogVMMapping();

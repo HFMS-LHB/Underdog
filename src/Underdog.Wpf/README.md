@@ -1,27 +1,27 @@
 # Underdog.Wpf
 
-»ùÓÚPrismµÄwpf¿ò¼Ü
+åŸºäºPrismçš„wpfæ¡†æ¶
 
-# ÃùĞ»
+# é¸£è°¢
 
-**¸ù¾İÕâ¸öĞŞ¸ÄÀ´µÄ**
+**æ ¹æ®è¿™ä¸ªä¿®æ”¹æ¥çš„**
 
 - [StupidBear](https://github.com/AelousDing/StupidBear)
 
 
-# ¿ª·¢ĞÅÏ¢
+# å¼€å‘ä¿¡æ¯
 
 - NET8 + VS2022
 - WPF
 
-# Ö§³Ö¹¦ÄÜ
+# æ”¯æŒåŠŸèƒ½
 
-- ÒÆÖ²ÁËPrism¿ò¼ÜÖĞµÄÄ£¿é»¯¡¢mvvm¡¢region¡¢dialog
-- Ö§³ÖNET8¼°ÒÔÉÏ°æ±¾
+- ç§»æ¤äº†Prismæ¡†æ¶ä¸­çš„æ¨¡å—åŒ–ã€mvvmã€regionã€dialog
+- æ”¯æŒNET8åŠä»¥ä¸Šç‰ˆæœ¬
 
-# ¿ìËÙÊ¹ÓÃ
+# å¿«é€Ÿä½¿ç”¨
 
-**°²×°°ü**
+**å®‰è£…åŒ…**
 
 ```nuget
     dotnet add package Underdog.Core --version 1.0.3
@@ -29,7 +29,7 @@
 ```
 
 
-**1.´´½¨`Program.cs`ÎÄ¼ş**
+**1.åˆ›å»º`Program.cs`æ–‡ä»¶**
 
 ```Program.cs
 
@@ -42,30 +42,30 @@
         public static void Main(string[] args)
         {
             var builder = Host.CreateDefaultBuilder(args)
-                // ×¢²áÄ£¿é
+                // æ³¨å†Œæ¨¡å—
                 .ConfigureServices(ModularityExtension.AddModularity)
                 .ConfigureServices((hosting,context)=>
                 {
                     services.AddSingleton<App>();
                     services.AddScoped<MainWindow>();
                     services.AddScoped<MainWindowViewModel>();
-                    services.AddHostedService<WPFHostedService<App, MainWindow>>(); // ÅäÖÃÆô¶¯´°¿Ú
-                    services.AddRegion(); // Ìí¼ÓÇøÓò
-                    // Ìí¼ÓÊÓÍ¼É¨ÃèÆ÷£¬ÓÉÓÚregionµÄnameĞèÒª´«ÍêÕûÊÓÍ¼ÎÄ¼şËùÔÚ³ÌĞò¼¯µÄÍêÈ«ÏŞ¶¨Ãû,Ìá¹©ÊÓÍ¼É¨ÃèÆ÷»ñÈ¡Ãû³Æ
+                    services.AddHostedService<WPFHostedService<App, MainWindow>>(); // é…ç½®å¯åŠ¨çª—å£
+                    services.AddRegion(); // æ·»åŠ åŒºåŸŸ
+                    // æ·»åŠ è§†å›¾æ‰«æå™¨ï¼Œç”±äºregionçš„nameéœ€è¦ä¼ å®Œæ•´è§†å›¾æ–‡ä»¶æ‰€åœ¨ç¨‹åºé›†çš„å®Œå…¨é™å®šå,æä¾›è§†å›¾æ‰«æå™¨è·å–åç§°
                     services.AddRegionViewScanner();
-                    services.AddDialog(); // Ìí¼ÓDialog
-                    services.AddMvvm(); // Ìí¼ÓMVVM
+                    services.AddDialog(); // æ·»åŠ Dialog
+                    services.AddMvvm(); // æ·»åŠ MVVM
                 });
 
             AppHost = builder.Build();
 
             AppHost.UseRegion<MainWindow>();
-            // ×¢²áÇøÓò
+            // æ³¨å†ŒåŒºåŸŸ
             // var regionManager = AppHost.Services.GetService<IRegionManager>();
             // regionManager?.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
             // regionManager?.RegisterViewWithRegion("ContentRegion", typeof(ViewB));
 
-            // ÆôÓÃÄ£¿é»¯
+            // å¯ç”¨æ¨¡å—åŒ–
             AppHost.UseModularity();
 
             AppHost.Run();
@@ -73,7 +73,7 @@
     }
 ```
 
-**2.ĞŞ¸Ä.csprojÎÄ¼ş,Ö¸¶¨Æô¶¯¶ÔÏóÎªProgram**
+**2.ä¿®æ”¹.csprojæ–‡ä»¶,æŒ‡å®šå¯åŠ¨å¯¹è±¡ä¸ºProgram**
 
 ```csproj
   <PropertyGroup>
@@ -81,11 +81,11 @@
   </PropertyGroup>
 ```
 
-**3.ĞŞ¸ÄApp.xaml**
+**3.ä¿®æ”¹App.xaml**
 
-*É¾³ı StartupUri="MainWindow.xaml" ÊôĞÔ*
+*åˆ é™¤ StartupUri="MainWindow.xaml" å±æ€§*
 
-**4.Æô¶¯³ÌĞò**
+**4.å¯åŠ¨ç¨‹åº**
 
 # MVVM
 
