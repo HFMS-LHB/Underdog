@@ -27,7 +27,8 @@
             <Button Command="{Binding ShowDialog1Command}" Content="点击弹窗1" />
             <Button Command="{Binding ShowDialog2Command}" Content="点击弹窗2" />
             <Button Command="{Binding ShowRegion1Command}" Content="界面导航1" />
-            <Button Command="{Binding ShowRegion2Command}" Content="界面导航2" />
+            <Button Command="{Binding ShowRegion2Command}" Content="界面导航2(程序集完全限定名)" />
+            <Button Command="{Binding ShowRegion3Command}" Content="界面导航3(手动获取实例)" />
         </StackPanel>
         <ContentControl
             Grid.Row="1"

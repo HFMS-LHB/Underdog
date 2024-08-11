@@ -27,6 +27,7 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
             var regionManager = host.Services.GetService<IRegionManager>();
             regionManager?.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
             regionManager?.RegisterViewWithRegion("ContentRegion", typeof(ViewB));
+            regionManager?.RegisterViewWithRegion("ContentRegion", typeof(ViewC));
         }
 
         /// <summary>

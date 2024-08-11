@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using Underdog.Core.Mvvm;
 using Underdog.Core.Navigation.Regions;
 using Underdog.Wpf.Navigation.Regions;
 using Underdog.Wpf.Tests.Common;
+using Underdog.Wpf.Tests.Views;
 
 namespace Underdog.Wpf.Tests.ViewModels
 {
@@ -23,8 +25,10 @@ namespace Underdog.Wpf.Tests.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IRegionViewScanner _regionViewScanner;
         private readonly IConfiguration _configuration;
-        public MainWindowViewModel(IConfiguration configuration, IRegionViewScanner regionViewScanner, IDialogService dialogService,IRegionManager regionManager)
+        private readonly IServiceProvider _serviceProvider;
+        public MainWindowViewModel(IServiceProvider serviceProvider, IConfiguration configuration, IRegionViewScanner regionViewScanner, IDialogService dialogService,IRegionManager regionManager)
         {
+            _serviceProvider = serviceProvider;
             _configuration = configuration;
             _dialogService = dialogService;
             _regionManager = regionManager;
@@ -83,5 +87,11 @@ namespace Underdog.Wpf.Tests.ViewModels
 
         [ObservableProperty]
         private string title = "Welcome to Underdog WPF Tests";
+
+        [RelayCommand]
+        private void ShowRegion3() 
+        {
+            _regionManager.RequestNavigate(RegionKey.Root, _regionViewScanner.GetViewAssemblyQualifiedName<ViewCViewModel>());
+        }
     }
 }
