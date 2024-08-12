@@ -24,8 +24,8 @@
 **安装包**
 
 ```nuget
-    dotnet add package Underdog.Core --version 1.0.3
-    dotnet add package Underdog.Wpf --version 1.0.3
+    dotnet add package Underdog.Core --version 1.0.4
+    dotnet add package Underdog.Wpf --version 1.0.5
 ```
 
 
@@ -46,15 +46,17 @@
                 .ConfigureServices(ModularityExtension.AddModularity)
                 .ConfigureServices((hosting,context)=>
                 {
+                    Assembly currentAssembly = Assembly.GetExecutingAssembly();
+
                     services.AddSingleton<App>();
                     services.AddScoped<MainWindow>();
                     services.AddScoped<MainWindowViewModel>();
-                    services.AddHostedService<WPFHostedService<App, MainWindow>>(); // 配置启动窗口
                     services.AddRegion(); // 添加区域
-                    // 添加视图扫描器，由于region的name需要传完整视图文件所在程序集的完全限定名,提供视图扫描器获取名称
-                    services.AddRegionViewScanner();
                     services.AddDialog(); // 添加Dialog
                     services.AddMvvm(); // 添加MVVM
+                    // 添加视图扫描器，由于region的name需要传完整视图文件所在程序集的完全限定名,提供视图扫描器获取名称
+                    services.AddRegionViewScanner(currentAssembly);
+                    services.AddViewsAndViewModels(currentAssembly);
                 });
 
             AppHost = builder.Build();

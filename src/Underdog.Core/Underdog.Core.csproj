@@ -6,11 +6,11 @@
 		<Nullable>enable</Nullable>
 		<Title>Underdog.Core</Title>
 		<Authors>Underdog</Authors>
-		<VersionPrefix>1.0.3</VersionPrefix>
+		<VersionPrefix>1.0.4</VersionPrefix>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>更改ShowDialog方法签名，使其更方便的指定windowName</PackageReleaseNotes>
+		<PackageReleaseNotes>更改模块化功能，通过配置文件注册模块或通过代码直接注册模块（二选一）</PackageReleaseNotes>
 		<PackageTags>mvvm</PackageTags>
 	</PropertyGroup>
 
