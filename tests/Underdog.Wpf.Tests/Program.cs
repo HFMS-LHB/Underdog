@@ -26,6 +26,7 @@ using Underdog.Wpf.Tests.Extensions.ServiceExtensions;
 using Underdog.Wpf.Tests.ViewModels;
 using Underdog.Wpf.Tests.Views;
 using Underdog.Wpf.Tests.Views.Dialogs;
+using Underdog.Wpf.Tests.Common;
 
 
 namespace Underdog.Wpf.Tests
@@ -52,19 +53,21 @@ namespace Underdog.Wpf.Tests
                 .UseEnvironment(Environment.GetEnvironmentVariable("environment") ?? "Developement")
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
+                .ConfigureServices(ConfigurationCommonService)
                 .ConfigureServices(ModularityExtension.AddModularity)
                 .ConfigureServices(ConfigurationClientService);
 
 
 
             AppHost = builder.Build();
+
             // 加载App.xaml资源
             var app = AppHost.Services.GetRequiredService<App>();
             app.InitializeComponent();
 
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
-            AppHost.UseModularity();
+            AppHost.UseModularity(AppSettings.Configuration);
 
             Task.Run(async () =>
             {
@@ -103,9 +106,15 @@ namespace Underdog.Wpf.Tests
             // 这里使用config.AddJsonFile()方法加载配置文件，在构造函数注入IConfiguration时仍然获取不到appsettings.json的配置信息
             // 没找到原因，暂时通过静态类的方式保存configurationRoot对象
             // var configurationRoot = config.Build();
+
+            hostingContext.Configuration.ConfigureApplication(config.Build());
         }
 
-
+        private static void ConfigurationCommonService(HostBuilderContext context, IServiceCollection services) 
+        {
+            context.ConfigureApplication(services);
+            services.AddSingleton(new AppSettings(context.Configuration));
+        }
 
         /// <summary>
         /// 配置客户端服务

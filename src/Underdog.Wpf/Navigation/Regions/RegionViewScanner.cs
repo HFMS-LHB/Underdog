@@ -42,7 +42,7 @@ namespace Underdog.Wpf.Navigation.Regions
                     {
                         if (interfaceType.IsAssignableFrom(type) && type.IsClass && !type.IsAbstract)
                         {
-                            _viewDictionary[type.Name] = type?.AssemblyQualifiedName?.Replace(" ", "") ?? "";
+                            _viewDictionary[type.FullName ?? type.Name] = type?.AssemblyQualifiedName?.Replace(" ", "") ?? "";
                         }
                     }
                 }
@@ -70,13 +70,8 @@ namespace Underdog.Wpf.Navigation.Regions
         /// <returns></returns>
         public string GetViewAssemblyQualifiedName<TViewModel>()
         {
-            var name = typeof(TViewModel).Name;
-            if (string.IsNullOrEmpty(name) || !name.EndsWith("ViewModel"))
-            {
-                return string.Empty;
-            }
-
-            var viewName = name[..^"ViewModel".Length];
+            var type = typeof(TViewModel);
+            var viewName = type.Namespace?[..^".ViewModel".Length] + "Views." + type.Name[..^"ViewModel".Length];
 
             return ViewDictionary.ContainsKey(viewName) ? ViewDictionary[viewName] : string.Empty;
         }

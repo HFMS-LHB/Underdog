@@ -66,5 +66,22 @@ namespace Underdog.Core.Extensions
             }
             return host;
         }
+
+        public static IHost UseModularity(this IHost host,IConfiguration configuration)
+        {
+            var moduleOptions = configuration?.GetSection(nameof(ModuleOptions))
+                                              .Get<ModuleOptions>();
+            if (moduleOptions != null && moduleOptions.Modules != null)
+            {
+                foreach (var option in moduleOptions.Modules)
+                {
+                    Type? moduleType = Type.GetType(option.Type);
+                    if (moduleType == null) continue;
+                    IModule? module = host.Services.GetService(moduleType) as IModule;
+                    module?.Config(host.Services);
+                }
+            }
+            return host;
+        }
     }
 }

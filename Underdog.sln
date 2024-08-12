@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E6E830E7-BCB9-45DD-B7C3-DB12606F250B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Wpf.Tests.ModuleA", "Underdog.Wpf.Test.ModuleA\Underdog.Wpf.Tests.ModuleA.csproj", "{8379F8F8-E038-4974-872B-A5D03E054DA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +36,16 @@ Global
 		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B25DA58-2462-4F7D-9C74-7AED833132DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8379F8F8-E038-4974-872B-A5D03E054DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8379F8F8-E038-4974-872B-A5D03E054DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8379F8F8-E038-4974-872B-A5D03E054DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8379F8F8-E038-4974-872B-A5D03E054DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8379F8F8-E038-4974-872B-A5D03E054DA9} = {E6E830E7-BCB9-45DD-B7C3-DB12606F250B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {476758FB-5076-45FC-9F26-3A6F8F42AEA7}

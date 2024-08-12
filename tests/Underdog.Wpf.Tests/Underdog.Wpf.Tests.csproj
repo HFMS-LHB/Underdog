@@ -29,6 +29,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\Underdog.Wpf\Underdog.Wpf.csproj" />
+	  <ProjectReference Include="..\..\Underdog.Wpf.Test.ModuleA\Underdog.Wpf.Tests.ModuleA.csproj" />
 	</ItemGroup>
 
 </Project>
