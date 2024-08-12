@@ -13,6 +13,8 @@ using Underdog.Wpf.Ioc;
 using System.Reflection;
 using System.Windows;
 using Underdog.Wpf.Navigation.Regions;
+using Underdog.Core.Modularity;
+using Underdog.Core.Extensions;
 
 namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
 {
@@ -61,6 +63,16 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
             services.RegisterDialogWindow<MessageBoxC>(nameof(MessageBoxC));
             services.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
             services.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();
+        }
+
+        /// <summary>
+        /// 注册模块
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddModules(this IServiceCollection services)
+        {
+            services.AddModule<ModuleA.ModuleAModule>();
+            services.AddModule<ModuleB.ModuleBModule>();
         }
     }
 }

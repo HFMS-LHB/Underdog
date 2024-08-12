@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 using System;
 using System.Collections.Generic;
@@ -16,22 +17,22 @@ namespace Underdog.Wpf.Extensions
     {
         /// <summary>
         /// 注册视图扫描器
-        /// 每次调用都会重置
         /// 需要使用IRegionViewScanner传入程序集获取
         /// </summary>
         /// <param name="services"></param>
         /// <param name="assembly">默认传入的程序集，null：创建空的视图字典</param>
         public static void AddRegionViewScanner(this IServiceCollection services, Assembly? assembly = null)
         {
-            services.AddSingleton<IRegionViewScanner, RegionViewScanner>((provider =>
+            if (!services.Any(s => s.ServiceType == typeof(IRegionViewScanner)))
             {
-                var viewScanner = new RegionViewScanner();
-                if (assembly != null) 
-                {
-                    viewScanner.ConfigureAssemblies<FrameworkElement>(assembly);
-                }
-                return viewScanner;
-            }));
+                services.AddSingleton<IRegionViewScanner, RegionViewScanner>();
+            }
+            
+            services.AddSingleton<IHostedService>(provider =>
+            {
+                var viewScanner = provider.GetRequiredService<IRegionViewScanner>();
+                return new RegionViewScannerHostedService(viewScanner, assembly);
+            });
         }
 
         /// <summary>

@@ -30,6 +30,16 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\Underdog.Wpf\Underdog.Wpf.csproj" />
 	  <ProjectReference Include="..\..\Underdog.Wpf.Test.ModuleA\Underdog.Wpf.Tests.ModuleA.csproj" />
+	  <ProjectReference Include="..\..\Underdog.Wpf.Tests.ModuleB\Underdog.Wpf.Tests.ModuleB.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

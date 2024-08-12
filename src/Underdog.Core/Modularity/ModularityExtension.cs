@@ -5,10 +5,13 @@ using Underdog.Core.Modularity;
 
 namespace Underdog.Core.Extensions
 {
+    /// <summary>
+    /// 模块化扩展，使用配置文件，或者指定类型注册，二选一
+    /// </summary>
     public static class ModularityExtension
     {
-
-        public static void AddModularity(HostBuilderContext context, IServiceCollection services) 
+        #region 配置文件
+        public static void AddModularityForConfig(HostBuilderContext context, IServiceCollection services)
         {
             services.Configure<ModuleOptions>(context.Configuration.GetSection(nameof(ModuleOptions)));
             var moduleOptions = context.Configuration.GetSection(nameof(ModuleOptions)).Get<ModuleOptions>();
@@ -28,27 +31,7 @@ namespace Underdog.Core.Extensions
             }
         }
 
-        //public static IServiceCollection AddModularity(this IHostBuilder builder)
-        //{
-        //    builder.Services.Configure<ModuleOptions>(builder.Configuration.GetSection(nameof(ModuleOptions)));
-        //    var moduleOptions = builder.Configuration.GetSection(nameof(ModuleOptions)).Get<ModuleOptions>();
-        //    if (moduleOptions != null && moduleOptions.Modules != null)
-        //    {
-        //        foreach (var option in moduleOptions.Modules)
-        //        {
-        //            Type? moduleType = Type.GetType(option.Type);
-        //            if (moduleType == null) continue;
-        //            builder.Services.AddSingleton(moduleType);//注册各模块
-
-        //            IModule? module = builder.Services
-        //                .BuildServiceProvider()
-        //                .GetService(moduleType) as IModule;
-        //            module?.ConfigService(builder.Services);
-        //        }
-        //    }
-        //    return builder.Services;
-        //}
-        public static IHost UseModularity(this IHost host)
+        public static IHost UseModularityForConfig(this IHost host)
         {
             var moduleOptions = host.Services
                 .GetService<IConfiguration>()
@@ -66,22 +49,28 @@ namespace Underdog.Core.Extensions
             }
             return host;
         }
+        #endregion
 
-        public static IHost UseModularity(this IHost host,IConfiguration configuration)
+        #region 指定类型
+        public static void AddModule<TImplementation>(this IServiceCollection services) where TImplementation : class, IModule, new()
         {
-            var moduleOptions = configuration?.GetSection(nameof(ModuleOptions))
-                                              .Get<ModuleOptions>();
-            if (moduleOptions != null && moduleOptions.Modules != null)
+            var module = new TImplementation();
+            module.ConfigService(services);
+            services.AddSingleton<IModule>(module);
+        }
+
+        public static IHost UseModularity(this IHost host)
+        {
+            var services = host.Services.GetServices<IModule>();
+            if (services != null)
             {
-                foreach (var option in moduleOptions.Modules)
+                foreach (var module in services)
                 {
-                    Type? moduleType = Type.GetType(option.Type);
-                    if (moduleType == null) continue;
-                    IModule? module = host.Services.GetService(moduleType) as IModule;
                     module?.Config(host.Services);
                 }
             }
             return host;
         }
+        #endregion
     }
 }

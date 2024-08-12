@@ -56,7 +56,7 @@ namespace Underdog.Wpf.Navigation.Regions
         /// <summary>
         /// Gets the assembly qualified name of the corresponding view through the view name
         /// </summary>
-        /// <param name="viewName"></param>
+        /// <param name="viewName">must have a full namespace</param>
         /// <returns></returns>
         public string GetViewAssemblyQualifiedName(string viewName)
         {

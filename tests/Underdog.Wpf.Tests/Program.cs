@@ -27,6 +27,7 @@ using Underdog.Wpf.Tests.ViewModels;
 using Underdog.Wpf.Tests.Views;
 using Underdog.Wpf.Tests.Views.Dialogs;
 using Underdog.Wpf.Tests.Common;
+using Underdog.Wpf.Tests;
 
 
 namespace Underdog.Wpf.Tests
@@ -40,11 +41,8 @@ namespace Underdog.Wpf.Tests
         public static void Main(string[] args)
         {
             #region set environment
-#if DEBUG
             Environment.SetEnvironmentVariable("environment", "Development");
-#else
-            Environment.SetEnvironmentVariable("environment", "Production");
-#endif
+            // Environment.SetEnvironmentVariable("environment", "Production");
             #endregion
 
             // create builder
@@ -54,7 +52,7 @@ namespace Underdog.Wpf.Tests
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices(ConfigurationCommonService)
-                .ConfigureServices(ModularityExtension.AddModularity)
+                // .ConfigureServices(ModularityExtension.AddModularityForConfig)
                 .ConfigureServices(ConfigurationClientService);
 
 
@@ -67,7 +65,7 @@ namespace Underdog.Wpf.Tests
 
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
-            AppHost.UseModularity(AppSettings.Configuration);
+            AppHost.UseModularity();
 
             Task.Run(async () =>
             {
@@ -103,14 +101,18 @@ namespace Underdog.Wpf.Tests
 
             config.AddEnvironmentVariables();
 
-            // 这里使用config.AddJsonFile()方法加载配置文件，在构造函数注入IConfiguration时仍然获取不到appsettings.json的配置信息
-            // 没找到原因，暂时通过静态类的方式保存configurationRoot对象
-            // var configurationRoot = config.Build();
+            // 这里需要手动构建 IConfigurationBuilder 并配置到HostingContext
 
-            hostingContext.Configuration.ConfigureApplication(config.Build());
+            var configurationRoot = config.Build();
+            hostingContext.Configuration.ConfigureApplication(configurationRoot);
         }
 
-        private static void ConfigurationCommonService(HostBuilderContext context, IServiceCollection services) 
+        /// <summary>
+        /// 配置通用服务
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="services"></param>
+        private static void ConfigurationCommonService(HostBuilderContext context, IServiceCollection services)
         {
             context.ConfigureApplication(services);
             services.AddSingleton(new AppSettings(context.Configuration));
@@ -133,6 +135,7 @@ namespace Underdog.Wpf.Tests
             services.AddRegion();
             services.AddDialog();
             services.AddMvvm();
+            services.AddModules();
             services.AddRegionViewScanner(currentAssembly);
             services.AddViewsAndViewModels(currentAssembly);
             services.AddViewAndViewModel();

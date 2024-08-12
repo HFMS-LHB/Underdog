@@ -29,6 +29,7 @@
             <Button Command="{Binding ShowRegion1Command}" Content="界面导航1" />
             <Button Command="{Binding ShowRegion2Command}" Content="界面导航2(程序集完全限定名)" />
             <Button Command="{Binding ShowRegion3Command}" Content="界面导航3(模块A中的界面)" />
+            <Button Command="{Binding ShowRegion4Command}" Content="界面导航4(模块B中的界面)" />
         </StackPanel>
         <ContentControl
             Grid.Row="1"

@@ -93,5 +93,11 @@ namespace Underdog.Wpf.Tests.ViewModels
         {
             _regionManager.RequestNavigate(RegionKey.Root, _regionViewScanner.GetViewAssemblyQualifiedName<Underdog.Wpf.Tests.ModuleA.ViewModels.ViewAViewModel>());
         }
+
+        [RelayCommand]
+        private void ShowRegion4()
+        {
+            _regionManager.RequestNavigate(RegionKey.Root, _regionViewScanner.GetViewAssemblyQualifiedName<Underdog.Wpf.Tests.ModuleB.ViewModels.ViewAViewModel>());
+        }
     }
 }

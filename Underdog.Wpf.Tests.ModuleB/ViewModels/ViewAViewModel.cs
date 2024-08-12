@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Underdog.Wpf.Tests.ModuleA.ViewModels
+namespace Underdog.Wpf.Tests.ModuleB.ViewModels
 {
     public partial class ViewAViewModel:ObservableObject
     {
@@ -19,6 +19,6 @@ namespace Underdog.Wpf.Tests.ModuleA.ViewModels
         }
 
         [ObservableProperty]
-        private string title = "ModuleA.ViewA";
+        private string title = "ModuleB.ViewA";
     }
 }
