@@ -20,4 +20,4 @@
 | Package | NuGet Stable |  Downloads |
 | ------- | -------- | ------- |
 | [Underdog.Core](https://www.nuget.org/packages/Underdog.Core/) | [![Underdog.Core](https://img.shields.io/nuget/v/Underdog.Core.svg)](https://www.nuget.org/packages/Underdog.Core/)  | [![Underdog.Core](https://img.shields.io/nuget/dt/Underdog.Core.svg)](https://www.nuget.org/packages/Underdog.Core/) |
-| [Underdog.Core](https://www.nuget.org/packages/Underdog.Wpf/) | [![Underdog.Wpf](https://img.shields.io/nuget/v/Underdog.Wpf.svg)](https://www.nuget.org/packages/Underdog.Wpf/)  | [![Underdog.Wpf](https://img.shields.io/nuget/dt/Underdog.Wpf.svg)](https://www.nuget.org/packages/Underdog.Wpf/) |
+| [Underdog.Wpf](https://www.nuget.org/packages/Underdog.Wpf/) | [![Underdog.Wpf](https://img.shields.io/nuget/v/Underdog.Wpf.svg)](https://www.nuget.org/packages/Underdog.Wpf/)  | [![Underdog.Wpf](https://img.shields.io/nuget/dt/Underdog.Wpf.svg)](https://www.nuget.org/packages/Underdog.Wpf/) |
