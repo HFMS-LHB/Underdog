@@ -7,11 +7,11 @@
 		<Nullable>enable</Nullable>
 		<Title>Underdog.Wpf</Title>
 		<Authors>Underdog</Authors>
-		<Version>1.0.5</Version>
+		<Version>1.0.6</Version>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>修复视图扫描器在模块中失效的bug</PackageReleaseNotes>
+		<PackageReleaseNotes>修复区域服务生命周期注册错误</PackageReleaseNotes>
 		<PackageTags>mvvm</PackageTags>
 	</PropertyGroup>
 
