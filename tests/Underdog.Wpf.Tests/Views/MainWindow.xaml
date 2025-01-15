@@ -18,22 +18,30 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock
-                Width="120"
+        <TextBlock
+                Grid.Row="0"
                 HorizontalAlignment="Center"
                 Text="{Binding Title}" />
+        <WrapPanel Grid.Row="1" Orientation="Horizontal">
             <Button Command="{Binding ShowDialog1Command}" Content="点击弹窗1" />
             <Button Command="{Binding ShowDialog2Command}" Content="点击弹窗2" />
             <Button Command="{Binding ShowRegion1Command}" Content="界面导航1" />
             <Button Command="{Binding ShowRegion2Command}" Content="界面导航2(程序集完全限定名)" />
             <Button Command="{Binding ShowRegion3Command}" Content="界面导航3(模块A中的界面)" />
             <Button Command="{Binding ShowRegion4Command}" Content="界面导航4(模块B中的界面)" />
-        </StackPanel>
-        <ContentControl
-            Grid.Row="1"
-            Margin="0,10,0,0"
-            region:RegionManager.RegionName="ContentRegion" />
+            <Button Command="{Binding ShowRegion5Command}" Content="界面导航5(多区域跳转)" />
+            <Button Command="{Binding ShowRegion6Command}" Content="界面导航6(多区域跳转)" />
+        </WrapPanel>
+        <UniformGrid
+            Grid.Row="2"
+            Columns="2"
+            Rows="2" >
+            <ContentControl region:RegionManager.RegionName="ContentRegion1" />
+            <ContentControl region:RegionManager.RegionName="ContentRegion2" />
+            <ContentControl region:RegionManager.RegionName="ContentRegion3" />
+            <ContentControl region:RegionManager.RegionName="ContentRegion4" />
+        </UniformGrid>
     </Grid>
 </Window>
