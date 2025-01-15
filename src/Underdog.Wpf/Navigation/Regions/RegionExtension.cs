@@ -23,12 +23,12 @@ namespace Underdog.Wpf.Navigation.Regions
             services.AddSingleton<IRegionNavigationContentLoader, RegionNavigationContentLoader>();
             services.AddSingleton<IRegionViewRegistry, RegionViewRegistry>();
             services.AddSingleton<IRegionBehaviorFactory, RegionBehaviorFactory>();
-            services.AddSingleton<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();
-            services.AddSingleton<IRegionNavigationJournal, RegionNavigationJournal>();
-            services.AddSingleton<IRegionNavigationService, RegionNavigationService>();
+
+            services.AddTransient<IRegionNavigationJournalEntry, RegionNavigationJournalEntry>();
+            services.AddTransient<IRegionNavigationJournal, RegionNavigationJournal>();
+            services.AddTransient<IRegionNavigationService, RegionNavigationService>();
 
             services.AddTransient<DelayedRegionCreationBehavior>();
-
             services.AddTransient<BindRegionContextToDependencyObjectBehavior>();
             services.AddTransient<RegionActiveAwareBehavior>();
             services.AddTransient<SyncRegionContextWithHostBehavior>();
