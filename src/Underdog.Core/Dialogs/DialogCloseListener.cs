@@ -17,6 +17,7 @@ public struct DialogCloseListener
     /// </summary>
     public DialogCloseListener()
     {
+        _callback = null;
     }
 
     internal DialogCloseListener(Action<IDialogResult> callback)

@@ -46,10 +46,10 @@ namespace Underdog.Wpf.Extensions
         public static void AddViewsAndViewModels(this IServiceCollection services, Assembly assembly, string[]? suffixs = null)
         {
             // 指定要查找的命名空间后缀
-            suffixs ??= ["Views", "ViewModels", "Views.Dialogs", "ViewModels.Dialogs"];
+            suffixs ??= new string[] { "Views", "ViewModels", "Views.Dialogs", "ViewModels.Dialogs" };
 
             // 获取所有指定命名空间下的所有类
-            List<Type> classes = [];
+            List<Type> classes = new();
 
             foreach (var suffix in suffixs)
             {

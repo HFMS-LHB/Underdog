@@ -84,7 +84,7 @@ namespace Underdog.Core.Common
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<T> GetValues<T>(this IEnumerable<KeyValuePair<string, object>> parameters, string key)
         {
-            List<T> values = [];
+            List<T> values = new();
             var type = typeof(T);
 
             foreach (var kvp in parameters)

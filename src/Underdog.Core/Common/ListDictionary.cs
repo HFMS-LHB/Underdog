@@ -10,7 +10,7 @@ namespace Underdog.Core.Common
     /// <typeparam name="TValue">The type of the value held by lists.</typeparam>
     public sealed class ListDictionary<TKey, TValue> : IDictionary<TKey, IList<TValue>>
     {
-        readonly Dictionary<TKey, IList<TValue>> innerValues = [];
+        readonly Dictionary<TKey, IList<TValue>> innerValues = new();
 
         #region Public Methods
 

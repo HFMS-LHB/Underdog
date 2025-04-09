@@ -97,7 +97,7 @@ namespace Underdog.Wpf.Tests.Common
         /// <returns></returns>
         public static List<T> app<T>(params string[] sections)
         {
-            List<T> list = [];
+            List<T> list = new();
             // 引用 Microsoft.Extensions.Configuration.Binder 包
             Configuration.Bind(string.Join(":", sections), list);
             return list;

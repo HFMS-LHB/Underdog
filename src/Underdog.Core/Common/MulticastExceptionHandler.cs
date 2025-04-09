@@ -17,7 +17,7 @@ public readonly struct MulticastExceptionHandler
     /// </summary>
     public MulticastExceptionHandler()
     {
-        _handlers = [];
+        _handlers = new();
     }
 
     /// <summary>
@@ -69,8 +69,8 @@ public readonly struct MulticastExceptionHandler
         var arguments = parameters.Length switch
         {
             0 => Array.Empty<object?>(),
-            1 => typeof(Exception).IsAssignableFrom(parameters[0].ParameterType) ? [exception] : [parameter],
-            2 => typeof(Exception).IsAssignableFrom(parameters[0].ParameterType) ? [exception, parameter] : [parameter, exception],
+            1 => typeof(Exception).IsAssignableFrom(parameters[0].ParameterType) ? new[] { exception } : new[]{ parameter },
+            2 => typeof(Exception).IsAssignableFrom(parameters[0].ParameterType) ? new[] { exception, parameter } : new[] { parameter, exception },
             _ => throw new InvalidOperationException($"Handler of type {multicastDelegate.GetType().Name} is not supported", exception)
         };
 

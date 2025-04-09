@@ -11,7 +11,7 @@ namespace Underdog.Core.Common
     /// </summary>
     public abstract class ParametersBase : IParameters
     {
-        private readonly List<KeyValuePair<string, object>> _entries = [];
+        private readonly List<KeyValuePair<string, object>> _entries = new();
 
         /// <summary>
         /// Default constructor.

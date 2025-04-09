@@ -17,15 +17,15 @@
 # 支持功能
 
 - 移植了Prism框架中的模块化、mvvm、region、dialog
-- 支持NET8及以上版本
+- 支持NET6、NET8及以上版本
 
 # 快速使用
 
 **安装包**
 
 ```nuget
-    dotnet add package Underdog.Core --version 1.0.4
-    dotnet add package Underdog.Wpf --version 1.0.5
+    dotnet add package Underdog.Core --version 1.0.5
+    dotnet add package Underdog.Wpf --version 1.0.7
 ```
 
 

@@ -2,6 +2,6 @@
 {
     public class ModuleOptions
     {
-        public required IEnumerable<ModuleInfo> Modules { get; set; }
+        public IEnumerable<ModuleInfo> Modules { get; set; }
     }
 }

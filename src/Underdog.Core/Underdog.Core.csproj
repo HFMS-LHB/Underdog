@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Title>Underdog.Core</Title>
 		<Authors>Underdog</Authors>
-		<VersionPrefix>1.0.4</VersionPrefix>
+		<VersionPrefix>1.0.5</VersionPrefix>
 		<Description>a wpf framework based on net core</Description>
 		<Copyright></Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageReleaseNotes>更改模块化功能，通过配置文件注册模块或通过代码直接注册模块（二选一）</PackageReleaseNotes>
+		<PackageReleaseNotes>支持net6.0</PackageReleaseNotes>
 		<PackageTags>mvvm</PackageTags>
 	</PropertyGroup>
 
@@ -21,7 +21,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.NamedService" Version="8.0.0-preview.7.23407.5" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 	</ItemGroup>
 
@@ -40,10 +39,9 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
+
 	<ItemGroup>
-		<None Update="README.md">
-			<PackagePath>\</PackagePath>
-			<Pack>True</Pack>
-		</None>
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
+	
 </Project>

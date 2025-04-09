@@ -10,13 +10,13 @@ namespace Underdog.Wpf.Navigation.Regions
 {
     public class RegionViewScanner : IRegionViewScanner
     {
-        private readonly Dictionary<string, string> _viewDictionary = [];
+        private readonly Dictionary<string, string> _viewDictionary = new();
 
         public IReadOnlyDictionary<string, string> ViewDictionary => _viewDictionary;
 
         public void ConfigureAssemblies<TInterface>(Assembly assembly)
         {
-            ConfigureAssemblies<TInterface>([assembly]);
+            ConfigureAssemblies<TInterface>(new List<Assembly>() { assembly });
         }
 
         public void ConfigureAssemblies<TInterface>(List<Assembly> assemblies)
