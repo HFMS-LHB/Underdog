@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Underdog.Core.Dialogs;
 using Underdog.Core.Mvvm;
 using Underdog.Core.Navigation.Regions;
+using Underdog.Wpf.Dialogs;
 using Underdog.Wpf.Navigation.Regions;
 using Underdog.Wpf.Tests.Common;
 using Underdog.Wpf.Tests.Views;
@@ -43,7 +44,8 @@ namespace Underdog.Wpf.Tests.ViewModels
         {
             var message = "这是一个自定义window窗体的弹窗，通过参数传递窗体名称";
             //using the dialog service as-is
-            _dialogService.ShowDialog("NotificationDialog1", new DialogParameters($"message={message}"), r =>
+            // nonModal 非模态窗
+            _dialogService.ShowDialog("NotificationDialog1", new DialogParameters($"message={message}&nonModal=true"), r =>
             {
                 if (r.Result == ButtonResult.None)
                     Title = "Result is None";
@@ -54,6 +56,9 @@ namespace Underdog.Wpf.Tests.ViewModels
                 else
                     Title = "I Don't know what you did!?";
             }, "MessageBoxC");
+
+            // 非模态
+            // _dialogService.Show();
         }
 
         [RelayCommand]

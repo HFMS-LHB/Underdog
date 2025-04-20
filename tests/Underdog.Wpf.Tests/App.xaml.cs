@@ -30,16 +30,18 @@ namespace Underdog.Wpf.Tests
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            App.Current.MainWindow.Show();
+            base.OnStartup(e);
         }
 
         protected override async void OnExit(ExitEventArgs e)
         {
-            await Program.AppHost!.StopAsync();
+            await Program.AppHost!.StopAsync().ConfigureAwait(false);
+            Program.AppHost!.Dispose();
 
             base.OnExit(e);
         }

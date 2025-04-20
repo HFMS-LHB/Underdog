@@ -48,7 +48,7 @@ namespace Underdog.Wpf.Tests
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
             AppHost.UseModularity();
-            AppHost.RunApplication();
+            AppHost.RunApplication<MainWindow>();
         }
     }
 }

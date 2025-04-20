@@ -30,7 +30,7 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
             app.InitializeComponent();
         }
 
-        public static void RunApplication(this IHost host)
+        public static void RunApplication<HostWindow>(this IHost host) where HostWindow : Window, new()
         {
             Task.Run(async () =>
             {
@@ -45,8 +45,9 @@ namespace Underdog.Wpf.Tests.Extensions.ServiceExtensions
                 }
             });
 
-            var mainWindow = host.Services.GetRequiredService<MainWindow>();
-            mainWindow!.ShowDialog();
+            var app = host.Services.GetRequiredService<App>();
+            app.MainWindow = host.Services.GetRequiredService<HostWindow>();
+            app.Run();
         }
 
         /// <summary>
